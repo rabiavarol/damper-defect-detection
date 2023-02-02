@@ -16,7 +16,6 @@ f_damper_intact = h5py.File('../damper/intact/intact_049594.hdf', 'r')
 # Number of datapoints per segment
 dp = 2048
 
-
 # DEFECT - Get the necessary channel group keys 
 def get_channel_group_keys(f_damper_type):
     result_dict = dict()
@@ -106,7 +105,6 @@ mean_velo_values_defect = mean_velo_for_512_points(mean_velocity_defect)
 mean_velo_values_intact = mean_velo_for_512_points(mean_velocity_intact)
 
 # Delete corresponding accelerations with less than 30 km/h velocities
-
 def delete_accel_less_than_30_velo(accel_type_str, accel_type_array, mean_velo_values, stop_data_point):
     # indices with less than 30 km/h velocity 
     mean_velocity_indices = np.where(mean_velo_values < 30.0)
@@ -178,7 +176,6 @@ while i < flattened_size_defect:
                                     cmap=cmap, vmin=-100, vmax=max_db)
     plt.savefig("../colored_Accel_Z_dataset/defect/" + str(int(i/dp)) + ".png")
     i = i + dp
-
 
 # Create intact spectrograms
 cmap = plt.get_cmap() 
