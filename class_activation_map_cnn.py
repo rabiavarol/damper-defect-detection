@@ -11,7 +11,6 @@ from PIL import Image
 
 # This class stores the feature maps of the last conv layer of the image, 
 # after a forward pass.
-
 class FeatureBuffer():
 
     def __init__(self, m): 
