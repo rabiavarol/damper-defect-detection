@@ -42,7 +42,6 @@ class ImagenetTransferLearning(pl.LightningModule):
         predictions = logits.argmax(-1)
         correct = (predictions == labels).sum().item()
         accuracy = correct/pixel_values.shape[0]
-
         return loss, accuracy
       
     def training_step(self, batch, batch_idx):
@@ -51,14 +50,12 @@ class ImagenetTransferLearning(pl.LightningModule):
         # and the average across the epoch
         self.log("training_loss", loss)
         self.log("training_accuracy", accuracy)
-        
         return loss
     
     def validation_step(self, batch, batch_idx):
         loss, accuracy = self.common_step(batch, batch_idx)     
         self.log("validation_loss", loss, on_epoch=True)
         self.log("validation_accuracy", accuracy, on_epoch=True)
-        
         return loss
 
     def test_step(self, batch, batch_idx):
