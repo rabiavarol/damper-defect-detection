@@ -30,7 +30,6 @@ class ViTLightningModule(pl.LightningModule):
         predictions = logits.argmax(-1)
         correct = (predictions == labels).sum().item()
         accuracy = correct/pixel_values.shape[0]
-
         return loss, accuracy
       
     def training_step(self, batch, batch_idx):
@@ -39,20 +38,17 @@ class ViTLightningModule(pl.LightningModule):
         # and the average across the epoch
         self.log("training_loss", loss)
         self.log("training_accuracy", accuracy)
-
         return loss
     
     def validation_step(self, batch, batch_idx):
         loss, accuracy = self.common_step(batch, batch_idx)     
         self.log("validation_loss", loss, on_epoch=True)
         self.log("validation_accuracy", accuracy, on_epoch=True)
-
         return loss
 
     def test_step(self, batch, batch_idx):
         loss, accuracy = self.common_step(batch, batch_idx)
         self.log_dict({'test_loss': loss, 'test_accuracy': accuracy})  
-
         return loss
 
     def configure_optimizers(self):
@@ -60,7 +56,6 @@ class ViTLightningModule(pl.LightningModule):
         lr_schedulers = {"scheduler": torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
         factor=0.1, patience=2, threshold=0.0001, threshold_mode='abs'), "monitor": "validation_loss"}
         return [optimizer], [lr_schedulers]
-
 
     def train_dataloader(self):
         return self.train_loader
