@@ -70,5 +70,3 @@ if __name__ == "__main__":
     print("correct_pred", correct_pred) 
     print("false_pred", false_pred)    
     """
-    #print("Predicted   : ", id2label[predicted_label])
-    #print("Ground Truth: ", id2label[test_ds[i]['label']])
