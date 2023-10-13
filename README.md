@@ -12,10 +12,10 @@ In automotive technology, chassis system components such as dampers have great i
 ### Training
 To train ViT:
 
-    python train_vit.py
+    python train/train_vit.py
 To train CNN:
 
-    python train_cnn.py
+    python train/train_cnn.py
 
 ### Activation Map Generation
 
