@@ -28,8 +28,7 @@ def collate_fn(examples):
     return {"pixel_values": pixel_values, "labels": labels}
 
 if __name__ == "__main__":
-    # Directory for the dataset
-    data_dir = "../dataset"
+    data_dir = "../dataset" # path to the dataset location
     train_ds, val_ds, test_ds = dataset.get_transformed_datasets(data_dir)
     id2label = {id:label for id, label in enumerate(train_ds.features['label'].names)}
     label2id = {label:id for id,label in id2label.items()}
